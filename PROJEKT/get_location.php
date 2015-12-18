@@ -6,14 +6,20 @@ require_once __DIR__ . '/db_connect.php';
  
 $db = new DB_CONNECT();
  
-if (isset($_GET["line"])) {
-    $line = $_GET['line'];
+if (isset($_GET["line"]) | isset($_GET["mpk_nr"])) {
  
-    if (isset($_GET["mpk_nr"])){
+    if (isset($_GET["mpk_nr"]) & isset($_GET["line"])){
         $mpk_nr = $_GET['mpk_nr'];
+        $line = $_GET['line'];
         $result = mysql_query("SELECT * FROM sample WHERE line = $line and mpk_nr=$mpk_nr");
-    } else {
+    } 
+    elseif (isset($_GET["line"])) {
+        $line = $_GET['line'];
         $result = mysql_query("SELECT * FROM sample WHERE line = $line");
+    }
+    else {
+        $mpk_nr = $_GET['mpk_nr'];
+        $result = mysql_query("SELECT * FROM sample WHERE mpk_nr = $mpk_nr");
     }
 
     if (!empty($result)) {
