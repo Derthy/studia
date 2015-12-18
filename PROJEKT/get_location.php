@@ -26,7 +26,7 @@ if (isset($_GET["line"]) | isset($_GET["mpk_nr"])) {
         if (mysql_num_rows($result) > 0) {
  
             $response["bus"] = array();
-            $response["success"] = 1;
+            $response["success"] = "true";
 
             while($row = mysql_fetch_assoc($result)) {
                 $bus["latitude"] = $row["latitude"];
@@ -38,19 +38,19 @@ if (isset($_GET["line"]) | isset($_GET["mpk_nr"])) {
 
             echo json_encode($response);
         } else {
-            $response["success"] = 0;
+            $response["success"] = "false";
             $response["message"] = "No bus found";
  
             echo json_encode($response);
         }
     } else {
-        $response["success"] = 0;
+        $response["success"] = "false";
         $response["message"] = "No bus found";
  
         echo json_encode($response);
     }
 } else {
-    $response["success"] = 0;
+    $response["success"] = "false";
     $response["message"] = "Required field(s) is missing";
  
     echo json_encode($response);
