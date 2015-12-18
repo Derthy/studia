@@ -9,8 +9,13 @@ $db = new DB_CONNECT();
 if (isset($_GET["line"])) {
     $line = $_GET['line'];
  
-    $result = mysql_query("SELECT * FROM sample WHERE line = $line");
- 
+    if (isset($_GET["mpk_nr"])){
+        $mpk_nr = $_GET['mpk_nr'];
+        $result = mysql_query("SELECT * FROM sample WHERE line = $line and mpk_nr=$mpk_nr");
+    } else {
+        $result = mysql_query("SELECT * FROM sample WHERE line = $line");
+    }
+
     if (!empty($result)) {
         if (mysql_num_rows($result) > 0) {
  
