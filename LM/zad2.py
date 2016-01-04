@@ -7,6 +7,7 @@ data = ''
 numbers = defaultdict(list)
 counter = 0
 states = defaultdict(list)
+transition_table = defaultdict(list)
 
 states[0] = [[0, 1], [0, 2], [0, 3], [0, 4],
              [0, 5], [0, 6], [0, 7], [0, 8], [0, 9]]
@@ -38,9 +39,11 @@ for w in word:
         continue
     numbers[counter] += w
 
-# for i in numbers.values():
-    # print i
-try:
-        print numbers[0][5]
-except IndexError:
+counter = 0
+
+for i in numbers.values():
+
+    try:
+        print numbers[0]
+    except IndexError:
         print 'dupa'
